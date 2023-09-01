@@ -2,9 +2,9 @@ POST http://localhost:3000/api/services
 Content-Type: application/json
 
 {
-  "name": "Algum serviço 5",
-  "description": "Alguma descrição 5",
-  "price": 1900,
+  "name": "Banda Marca",
+  "description": "Melhor do Centro Oeste",
+  "price": 800,
   "image": "https://www.gamersegames.com.br/wp-content/uploads/2022/09/WANDINHA-Netflix-780x439.jpg"
 }
 
@@ -15,7 +15,7 @@ GET http://localhost:3000/api/services
 GET http://localhost:3000/api/services/64f20bb4d7d9dce34c2ee3f5
 
 ### 
-DELETE http://localhost:3000/api/services/64f20bb4d7d9dce34c2ee3f4
+DELETE http://localhost:3000/api/services/64f20d4374123924fbba2fe5
 
 ###
 PUT  http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0
@@ -29,3 +29,30 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3000/api/parties
+Content-Type: application/json
+
+{
+  "title": "Aniversário do Filipe",
+  "author": "Cássio Mendes",
+  "description": "Em Rialma",
+  "budget": 2000,
+  "image": "https://www.tuacasa.com.br/wp-content/uploads/2019/03/decoracao-de-aniversario-simples-15.jpg",
+  "services": [
+    {
+      "name": "DJ",
+      "description": "Cerense",
+      "price": 200,
+      "image": "https://www.gamersegames.com.br/wp-content/uploads/2022/09/WANDINHA-Netflix-780x439.jpg"
+    },
+    {
+      "name": "Iluminação",
+      "description": "Ilumina Ceres Cia",
+      "price": 600,
+      "image": "https://www.gamersegames.com.br/wp-content/uploads/2022/09/WANDINHA-Netflix-780x439.jpg"
+    }
+  ]
+}
+
+###
+GET http://localhost:3000/api/parties

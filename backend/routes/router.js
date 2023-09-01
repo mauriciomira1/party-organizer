@@ -1,7 +1,7 @@
-const router = require('express').Router()
+const router = require("express").Router()
 
 // Services router
-const servicesRouter = require('./services')
+const servicesRouter = require("./services")
 router.use("/", servicesRouter)
 
 // Parties router
