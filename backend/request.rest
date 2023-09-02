@@ -56,3 +56,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/parties
+
+###
+GET http://localhost:3000/api/parties/64f2584559400757970c5b8b
+
+###
+DELETE http://localhost:3000/api/parties/64f2584559400757970c5b8b
+
+###
+PUT http://localhost:3000/api/parties/64f2552d91e48b50a519c278
+Content-Type: application/json
+
+{
+  "description": "Em Ceres"
+}
