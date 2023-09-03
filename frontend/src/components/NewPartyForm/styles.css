@@ -1,0 +1,8 @@
+label {
+  @apply text-xs text-gray-900 mt-2;
+}
+
+input,
+textarea {
+  @apply rounded bg-gray-200 focus:outline-0 px-2 py-1;
+}
