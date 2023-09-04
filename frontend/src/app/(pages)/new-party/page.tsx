@@ -1,6 +1,6 @@
 import NewPartyForm from "@/components/NewPartyForm/NewPartyForm";
 
-const page = () => {
+const NewParty = () => {
   return (
     <div className="flex flex-col w-full items-center mt-10 px-3">
       <h1 className="text-2xl font-semibold text-purple-950">
@@ -14,4 +14,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default NewParty;
