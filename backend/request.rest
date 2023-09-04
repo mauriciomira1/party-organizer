@@ -15,7 +15,7 @@ GET http://localhost:3000/api/services
 GET http://localhost:3000/api/services/64f20bb4d7d9dce34c2ee3f5
 
 ### 
-DELETE http://localhost:3000/api/services/64f20d4374123924fbba2fe5
+DELETE http://localhost:3000/api/services/64f5473ce6363b59d29c2aee
 
 ###
 PUT  http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0
@@ -61,7 +61,7 @@ GET http://localhost:3000/api/parties
 GET http://localhost:3000/api/parties/64f2584559400757970c5b8b
 
 ###
-DELETE http://localhost:3000/api/parties/64f2584559400757970c5b8b
+DELETE http://localhost:3000/api/parties/64f54356e6363b59d29c2ace
 
 ###
 PUT http://localhost:3000/api/parties/64f2552d91e48b50a519c278
