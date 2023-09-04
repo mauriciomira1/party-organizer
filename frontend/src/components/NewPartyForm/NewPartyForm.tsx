@@ -1,22 +1,54 @@
+"use client";
+import { useState } from "react";
 import "./styles.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import Snackbar from "../Snackbar/Snackbar";
 
-interface Inputs {
+type Inputs = {
   title: string;
   author: string;
   description: string;
   budget: number;
   image: string;
-}
+};
 
 const NewPartyForm = () => {
+  const [btnSending, setBtnSending] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const changeSnackbarState = () => {
+    setSnackbarOpen(true);
+    setTimeout(() => {
+      setSnackbarOpen(false);
+    }, 4000);
+  };
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setBtnSending(true);
+    // Adicionei um setTimeout para adicionar 1 segundo
+    setTimeout(async () => {
+      try {
+        await fetch("http://localhost:3000/api/parties", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      setBtnSending(false);
+      changeSnackbarState();
+    }, 600);
+  };
 
   return (
     <form
@@ -27,22 +59,42 @@ const NewPartyForm = () => {
     >
       <label htmlFor="title">Nome da festa</label>
       <input {...register("title", { required: true })} />
+      {errors.title && <span>Esse campo é obrigatório</span>}
       <label htmlFor="author">Responsável</label>
       <input {...register("author", { required: true })} />
+      {errors.author && <span>Esse campo é obrigatório</span>}
       <label htmlFor="description">
         Descreva seu evento em poucas palavras
       </label>
       <input {...register("description", { required: true })} />
+      {errors.description && <span>Esse campo é obrigatório</span>}
       <label htmlFor="budget">Quer gastar quanto?</label>
-      <input {...register("budget", { required: true })} step={0.01} />
+      <input
+        type="number"
+        {...register("budget", { required: true })}
+        step={0.01}
+      />
+      {errors.budget && <span>Esse campo é obrigatório</span>}
       <label htmlFor="image">URL para imagem de capa</label>
       <input {...register("image", { required: true })} />
-      <input
-        type="submit"
-        className="w-full bg-purple-900 hover:bg-purple-800 duration-150 text-white py-1 mt-3 rounded mb-1"
-      >
-        Criar
-      </input>
+      {errors.image && <span>Esse campo é obrigatório</span>}
+
+      {btnSending ? (
+        <button
+          type="submit"
+          className="w-full bg-green-600 duration-150 py-1 mt-3 rounded text-white mb-1"
+        >
+          Enviando...
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="w-full bg-purple-900 hover:bg-purple-800 duration-150 text-white py-1 mt-3 rounded mb-1"
+        >
+          Criar
+        </button>
+      )}
+      {snackbarOpen && <Snackbar textToShow="Festa criada com sucesso!" />}
     </form>
   );
 };

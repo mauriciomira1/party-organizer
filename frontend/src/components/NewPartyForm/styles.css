@@ -6,3 +6,7 @@ input,
 textarea {
   @apply rounded bg-gray-200 focus:outline-0 px-2 py-1;
 }
+
+span {
+  @apply text-red-500 text-xs pt-1 font-semibold;
+}
