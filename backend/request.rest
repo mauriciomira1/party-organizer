@@ -15,7 +15,7 @@ GET http://localhost:3000/api/services
 GET http://localhost:3000/api/services/64f20bb4d7d9dce34c2ee3f5
 
 ### 
-DELETE http://localhost:3000/api/services/64f5473ce6363b59d29c2aee
+DELETE http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0 
 
 ###
 PUT  http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0
@@ -58,15 +58,20 @@ Content-Type: application/json
 GET http://localhost:3000/api/parties
 
 ###
-GET http://localhost:3000/api/parties/64f2584559400757970c5b8b
+GET http://localhost:3000/api/parties/64f53f95e6363b59d29c2ac6
 
 ###
-DELETE http://localhost:3000/api/parties/64f54356e6363b59d29c2ace
+DELETE http://localhost:3000/api/parties/64f53f95e6363b59d29c2ac6
 
 ###
-PUT http://localhost:3000/api/parties/64f2552d91e48b50a519c278
+PUT http://localhost:3000/api/parties/64f60c6b6af967e08f4c1971
 Content-Type: application/json
 
 {
-  "description": "Em Ceres"
+  "services": [{
+    "name": "Atualizado",
+    "description": "Alguma descrição",
+    "price": 2200,
+    "image": "https://www.gamersegames.com.br/wp-content/uploads/2022/09/WANDINHA-Netflix-780x439.jpg"
+  }]
 }
