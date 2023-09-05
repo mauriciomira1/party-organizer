@@ -1,4 +1,5 @@
 "use client";
+import ServiceCard from "@/components/ServiceCard/ServiceCard";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -77,7 +78,7 @@ const PartyDetails = ({ params }: { params: { id: string } }) => {
               Orçamento disponível:{" "}
               <span className="font-semibold">R$ {party.budget}</span>
             </p>
-            <div className="flex gap-1 rounded-sm">
+            <div className="flex justify-center w-11/12 flex-wrap gap-1 rounded-sm">
               {party.services.map((service) => {
                 return (
                   <p
@@ -99,6 +100,7 @@ const PartyDetails = ({ params }: { params: { id: string } }) => {
           >
             <BsFillTrashFill /> Remover Festa
           </button>
+          <ServiceCard partyId={params.id} />
         </div>
       )}
     </>

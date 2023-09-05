@@ -8,7 +8,7 @@ interface PartiesProps {
   author: string;
   image: string;
   budget: number;
-  _id: number;
+  _id: string;
 }
 
 const Parties = () => {
@@ -28,7 +28,7 @@ const Parties = () => {
 
   useEffect(() => {
     getParties();
-  }, []);
+  }, [parties]);
 
   return parties.length > 0 ? (
     <div className="flex flex-col items-center justify-center py-6">

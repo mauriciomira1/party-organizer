@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "i.pinimg.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "www.gamersegames.com.br",
+        port: "",
+      },
     ],
   },
 };

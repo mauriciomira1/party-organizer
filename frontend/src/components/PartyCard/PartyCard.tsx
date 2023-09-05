@@ -7,7 +7,7 @@ interface PartyCardProps {
   author: string;
   image: string;
   budget: number;
-  id: number;
+  id: string;
 }
 
 const PartyCard = ({ title, author, image, budget, id }: PartyCardProps) => {
