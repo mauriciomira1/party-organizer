@@ -49,6 +49,10 @@ const PartyDetails = ({ params }: { params: { id: string } }) => {
     }
   };
 
+  const updateParty = () => {
+    getParty();
+  };
+
   useEffect(() => {
     if (params.id) {
       getParty();
@@ -100,7 +104,7 @@ const PartyDetails = ({ params }: { params: { id: string } }) => {
           >
             <BsFillTrashFill /> Remover Festa
           </button>
-          <ServiceCard partyId={params.id} />
+          <ServiceCard partyId={params.id} updateParty={updateParty} />
         </div>
       )}
     </>

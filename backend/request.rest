@@ -12,10 +12,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/services
 
 ###
-GET http://localhost:3000/api/services/64f20bb4d7d9dce34c2ee3f5
+GET http://localhost:3000/api/services/64f25112e3b4561c39a8d8cf
 
 ### 
-DELETE http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0 
+DELETE http://localhost:3000/api/services/64f7ead03613ca6370b2ddb4 
 
 ###
 PUT  http://localhost:3000/api/services/64f214e89cf72a4b818bd5b0
@@ -58,10 +58,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/parties
 
 ###
-GET http://localhost:3000/api/parties/64f53f95e6363b59d29c2ac6
+GET http://localhost:3000/api/parties/64f690e16af967e08f4d9cad
 
 ###
-DELETE http://localhost:3000/api/parties/64f53f95e6363b59d29c2ac6
+DELETE http://localhost:3000/api/parties/64f690e16af967e08f4d9cad
 
 ###
 PUT http://localhost:3000/api/parties/64f60c6b6af967e08f4c1971

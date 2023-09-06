@@ -23,34 +23,82 @@ interface PartyProps {
   services: ServiceCardProps[];
 }
 
-const ServiceCard = ({ partyId }: { partyId: string }) => {
+const ServiceCard = ({
+  partyId,
+  updateParty,
+}: {
+  partyId: string;
+  updateParty: () => void;
+}) => {
   /*   const router = useRouter();
    */ const [services, setServices] = useState<ServiceCardProps[]>([]);
   const [showSnackbar, setShowSnackbar] = useState(false);
 
   // Adicionando um serviço na Festa
   const addService = async (service: ServiceCardProps) => {
-    if (partyId) {
+    try {
+      if (partyId) {
+        const response = await fetch(
+          `http://localhost:3000/api/parties/${partyId}`,
+          {
+            method: "GET",
+          }
+        );
+        const party = await response.json();
+        const updatedServices = [...party.services, service];
+        await fetch(`http://localhost:3000/api/parties/${partyId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ services: updatedServices }),
+        });
+      }
+      setShowSnackbar(true);
+      setTimeout(() => {
+        setShowSnackbar(false);
+      }, 3000);
+      getServices();
+      updateParty();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Removendo um serviço na Festa
+
+  const removeService = async (service: ServiceCardProps) => {
+    try {
       const response = await fetch(
         `http://localhost:3000/api/parties/${partyId}`,
         {
           method: "GET",
         }
       );
-      const party = await response.json();
-      const updatedServices = [...party.services, service];
+      const party: PartyProps = await response.json();
+      const serviceToRemove = party.services.find(
+        (partyService) => partyService._id !== service._id
+      );
+      const newServices = party.services.filter(
+        (service) => service._id === serviceToRemove?._id
+      );
       await fetch(`http://localhost:3000/api/parties/${partyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ services: updatedServices }),
+        body: JSON.stringify({ services: newServices }),
       });
+      /*       if (serviceToRemove) {
+        await fetch(`http://localhost:3000/api/parties/${partyId}`, {
+          method: "DELETE",
+        });
+      } */
+      getServices();
+      updateParty();
+    } catch (error) {
+      console.log(error);
     }
-    setShowSnackbar(true);
-    setTimeout(() => {
-      setShowSnackbar(false);
-    }, 3000);
   };
 
   // Obtendo array de serviços
@@ -60,8 +108,6 @@ const ServiceCard = ({ partyId }: { partyId: string }) => {
         method: "GET",
       });
       const servicesList: ServiceCardProps[] = await response.json();
-      /* servicesList.pu */
-      /*       setServices(servicesList); */
 
       // Verificando se o serviço já existe na festa
       const verifyService = async () => {
@@ -95,7 +141,7 @@ const ServiceCard = ({ partyId }: { partyId: string }) => {
 
   return (
     <>
-      <div className="flex gap-2 py-8 flex-wrap">
+      <div className="flex gap-2 py-8 flex-wrap items-center justify-center">
         {services.map((service) => (
           <section
             className="p-2 rounded border border-purple-300 shadow-md flex flex-col h-80"
@@ -114,7 +160,10 @@ const ServiceCard = ({ partyId }: { partyId: string }) => {
               <p className="italic text-xs">{service.description}</p>
               <p className="text-sm py-1">R$ {service.price}</p>
               {service.existsOnThisParty ? (
-                <button className="bg-red-600 hover:bg-red-500 duration-150 px-4 py-1 rounded text-white mb-2">
+                <button
+                  className="bg-red-500 hover:bg-red-600 duration-150 px-4 py-1 rounded text-white mb-2"
+                  onClick={() => removeService(service)}
+                >
                   Remover
                 </button>
               ) : (
